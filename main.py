@@ -3,7 +3,6 @@ import os
 from ezpatch.gui import EZPatchApp
 
 def main():
-    # start the app fr
     app = EZPatchApp()
     app.mainloop()
 
