@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyInstaller
+build/
+dist/
+*.manifest
+
+# Logs
+logs/
+*.log
+
+# VS Code / Cursor
+.vscode/
+.cursor/
+
+# OS generated files
+.DS_Store
+Thumbs.db
