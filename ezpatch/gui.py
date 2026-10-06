@@ -1,18 +1,18 @@
 import customtkinter as ctk
-from tkinter import filedialog, messagebox
+om tkinter import filedialog, messagebox
 import threading
-from pathlib import Path
+om pathlib import Path
 import os
 
-from .config import APP_NAME, APP_VERSION, DEFAULT_REPLAY_DIR
-from .utils import setup_logging, get_latest_replay, get_resource_path
-from .patcher import ReplayPatcher, VersionInfo
+om .config import APP_NAME, APP_VERSION, DEFAULT_REPLAY_DIR
+om .utils import setup_logging, get_latest_replay, get_resource_path
+om .patcher import ReplayPatcher, VersionInfo
 
 class EZPatchApp(ctk.CTk):
     def __init__(self):
         super().__init__()
         
-        # setup the main window fr
+        # setup the main window 
         self.title(f"{APP_NAME} v{APP_VERSION} - by git/seandotnet")
         self.geometry("800x700")
         self.resizable(True, True)
@@ -21,7 +21,7 @@ class EZPatchApp(ctk.CTk):
         ctk.set_appearance_mode("System")
         ctk.set_default_color_theme("blue")
         
-        # set the window icon fr
+        # set the window icon 
         icon_path = get_resource_path("ezpatch/assets/EZlogo.ico")
         if icon_path.exists():
             self.iconbitmap(str(icon_path))
@@ -61,47 +61,47 @@ class EZPatchApp(ctk.CTk):
         
     def create_main_tab(self):
         # working replay section
-        working_frame = ctk.CTkFrame(self.tab_main)
-        working_frame.pack(fill="x", padx=10, pady=10)
+        working_ame = ctk.CTkame(self.tab_main)
+        working_ame.pack(fill="x", padx=10, pady=10)
         
-        ctk.CTkLabel(working_frame, text="Working Replay File:", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
+        ctk.CTkLabel(working_ame, text="Working Replay File:", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
         
-        working_input_frame = ctk.CTkFrame(working_frame, fg_color="transparent")
-        working_input_frame.pack(fill="x", padx=10, pady=5)
+        working_input_ame = ctk.CTkame(working_ame, fg_color="transparent")
+        working_input_ame.pack(fill="x", padx=10, pady=5)
         
-        ctk.CTkEntry(working_input_frame, textvariable=self.working_replay_path, width=500).pack(side="left", fill="x", expand=True, padx=(0, 10))
-        ctk.CTkButton(working_input_frame, text="Browse", command=self.browse_working_replay, width=100).pack(side="left")
+        ctk.CTkEntry(working_input_ame, textvariable=self.working_replay_path, width=500).pack(side="left", fill="x", expand=True, padx=(0, 10))
+        ctk.CTkButton(working_input_ame, text="Browse", command=self.browse_working_replay, width=100).pack(side="left")
         
         # broken replays section
-        broken_frame = ctk.CTkFrame(self.tab_main)
-        broken_frame.pack(fill="x", padx=10, pady=10)
+        broken_ame = ctk.CTkame(self.tab_main)
+        broken_ame.pack(fill="x", padx=10, pady=10)
         
-        ctk.CTkLabel(broken_frame, text="Broken Replay(s):", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
+        ctk.CTkLabel(broken_ame, text="Broken Replay(s):", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
         
         # single file
-        single_input_frame = ctk.CTkFrame(broken_frame, fg_color="transparent")
-        single_input_frame.pack(fill="x", padx=10, pady=5)
+        single_input_ame = ctk.CTkame(broken_ame, fg_color="transparent")
+        single_input_ame.pack(fill="x", padx=10, pady=5)
         
-        ctk.CTkLabel(single_input_frame, text="Single File:").pack(side="left", padx=(0, 10))
-        ctk.CTkEntry(single_input_frame, textvariable=self.broken_replay_path, width=400).pack(side="left", fill="x", expand=True, padx=(0, 10))
-        ctk.CTkButton(single_input_frame, text="Browse File", command=self.browse_broken_replay, width=100).pack(side="left")
+        ctk.CTkLabel(single_input_ame, text="Single File:").pack(side="left", padx=(0, 10))
+        ctk.CTkEntry(single_input_ame, textvariable=self.broken_replay_path, width=400).pack(side="left", fill="x", expand=True, padx=(0, 10))
+        ctk.CTkButton(single_input_ame, text="Browse File", command=self.browse_broken_replay, width=100).pack(side="left")
         
         # folder
-        folder_input_frame = ctk.CTkFrame(broken_frame, fg_color="transparent")
-        folder_input_frame.pack(fill="x", padx=10, pady=5)
+        folder_input_ame = ctk.CTkame(broken_ame, fg_color="transparent")
+        folder_input_ame.pack(fill="x", padx=10, pady=5)
         
-        ctk.CTkLabel(folder_input_frame, text="Folder:      ").pack(side="left", padx=(0, 10))
-        ctk.CTkEntry(folder_input_frame, textvariable=self.broken_folder_path, width=400).pack(side="left", fill="x", expand=True, padx=(0, 10))
-        ctk.CTkButton(folder_input_frame, text="Browse Folder", command=self.browse_broken_folder, width=100).pack(side="left")
+        ctk.CTkLabel(folder_input_ame, text="Folder:      ").pack(side="left", padx=(0, 10))
+        ctk.CTkEntry(folder_input_ame, textvariable=self.broken_folder_path, width=400).pack(side="left", fill="x", expand=True, padx=(0, 10))
+        ctk.CTkButton(folder_input_ame, text="Browse Folder", command=self.browse_broken_folder, width=100).pack(side="left")
         
         # action buttons
-        button_frame = ctk.CTkFrame(self.tab_main, fg_color="transparent")
-        button_frame.pack(fill="x", padx=10, pady=10)
+        button_ame = ctk.CTkame(self.tab_main, fg_color="transparent")
+        button_ame.pack(fill="x", padx=10, pady=10)
         
-        self.patch_button = ctk.CTkButton(button_frame, text="Patch Replays", command=self.start_patching, fg_color="green", hover_color="darkgreen")
+        self.patch_button = ctk.CTkButton(button_ame, text="Patch Replays", command=self.start_patching, fg_color="green", hover_color="darkgreen")
         self.patch_button.pack(side="left", padx=5)
         
-        self.auto_button = ctk.CTkButton(button_frame, text="Auto Patch (Latest)", command=self.auto_patch)
+        self.auto_button = ctk.CTkButton(button_ame, text="Auto Patch (Latest)", command=self.auto_patch)
         self.auto_button.pack(side="left", padx=5)
         
         # progress and output
@@ -117,24 +117,24 @@ class EZPatchApp(ctk.CTk):
         
     def create_settings_tab(self):
         # log level
-        log_frame = ctk.CTkFrame(self.tab_settings)
-        log_frame.pack(fill="x", padx=10, pady=10)
+        log_ame = ctk.CTkame(self.tab_settings)
+        log_ame.pack(fill="x", padx=10, pady=10)
         
-        ctk.CTkLabel(log_frame, text="Log Level", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
+        ctk.CTkLabel(log_ame, text="Log Level", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
         
-        ctk.CTkRadioButton(log_frame, text="Info (default)", variable=self.log_level, value="Info", command=self.update_logger).pack(anchor="w", padx=10, pady=5)
-        ctk.CTkRadioButton(log_frame, text="Debug (sean)", variable=self.log_level, value="Debug", command=self.update_logger).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkRadioButton(log_ame, text="Info (default)", variable=self.log_level, value="Info", command=self.update_logger).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkRadioButton(log_ame, text="Debug (sean)", variable=self.log_level, value="Debug", command=self.update_logger).pack(anchor="w", padx=10, pady=5)
         
         # options
-        options_frame = ctk.CTkFrame(self.tab_settings)
-        options_frame.pack(fill="x", padx=10, pady=10)
+        options_ame = ctk.CTkame(self.tab_settings)
+        options_ame.pack(fill="x", padx=10, pady=10)
         
-        ctk.CTkLabel(options_frame, text="Options", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
+        ctk.CTkLabel(options_ame, text="Options", font=("Arial", 12, "bold")).pack(anchor="w", padx=10, pady=(5, 0))
         
-        ctk.CTkCheckBox(options_frame, text="Keep original files for backups", variable=self.keep_originals, command=self.on_keep_originals_change).pack(anchor="w", padx=10, pady=5)
-        ctk.CTkCheckBox(options_frame, text="Overwrite previously patched replays", variable=self.overwrite_patched).pack(anchor="w", padx=10, pady=5)
-        ctk.CTkCheckBox(options_frame, text="Move backups to ./Backups directory", variable=self.move_to_backups).pack(anchor="w", padx=10, pady=5)
-        ctk.CTkCheckBox(options_frame, text="Skip replay files from previous seasons", variable=self.skip_old_seasons).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkCheckBox(options_ame, text="Keep original files for backups", variable=self.keep_originals, command=self.on_keep_originals_change).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkCheckBox(options_ame, text="Overwrite previously patched replays", variable=self.overwrite_patched).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkCheckBox(options_ame, text="Move backups to ./Backups directory", variable=self.move_to_backups).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkCheckBox(options_ame, text="Skip replay files om previous seasons", variable=self.skip_old_seasons).pack(anchor="w", padx=10, pady=5)
         
     def update_logger(self):
         self.logger = setup_logging(self.log_level.get())
@@ -142,7 +142,7 @@ class EZPatchApp(ctk.CTk):
         
     def on_keep_originals_change(self):
         if not self.keep_originals.get():
-            result = messagebox.askyesno("Warning", "This will delete original files after patching! Are you sure fr?")
+            result = messagebox.askyesno("Warning", "This will delete original files after patching! Are you sure ?")
             if not result:
                 self.keep_originals.set(True)
                 
@@ -189,7 +189,7 @@ class EZPatchApp(ctk.CTk):
                 self.broken_folder_path.set(str(DEFAULT_REPLAY_DIR))
                 self.start_patching()
             else:
-                messagebox.showerror("Error", "No replay files found in default directory fr!")
+                messagebox.showerror("Error", "No replay files found in default directory !")
         else:
             messagebox.showerror("Error", "Default Fortnite replay directory not found!")
             
@@ -215,7 +215,7 @@ class EZPatchApp(ctk.CTk):
         self.output_text.delete("1.0", "end")
         self.output_text.configure(state="disabled")
         
-        # run in thread so ui doesnt freeze lol
+        # run in thread so ui doesnt eeze lol
         thread = threading.Thread(target=self._patch_thread)
         thread.daemon = True
         thread.start()
@@ -236,7 +236,7 @@ class EZPatchApp(ctk.CTk):
             # extract version
             version_info = self.patcher.extract_version(working_path)
             if not version_info:
-                self.log_to_ui("Failed to extract version info from working file", "ERROR")
+                self.log_to_ui("Failed to extract version info om working file", "ERROR")
                 return
                 
             self.log_to_ui(f"Extracted version info - Version: {version_info.version_bytes.hex()}")
