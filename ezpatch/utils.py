@@ -6,7 +6,7 @@ from pathlib import Path
 from .config import LOG_DIR
 
 def get_resource_path(relative_path: str) -> Path:
-    # get absolute path to resource works for dev and for pyinstaller fr
+    # get absolute path to resource works for dev and for pyinstaller 
     try:
         base_path = Path(sys._MEIPASS)
     except Exception:
@@ -15,7 +15,7 @@ def get_resource_path(relative_path: str) -> Path:
     return base_path / relative_path
 
 def setup_logging(log_level_str: str) -> logging.Logger:
-    # setup the logger for the app fr
+    # setup the logger for the app 
     LOG_DIR.mkdir(exist_ok=True)
     
     # map string to logging level
