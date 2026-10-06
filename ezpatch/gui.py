@@ -1,12 +1,12 @@
 import customtkinter as ctk
-om tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox
 import threading
-om pathlib import Path
+from pathlib import Path
 import os
 
-om .config import APP_NAME, APP_VERSION, DEFAULT_REPLAY_DIR
-om .utils import setup_logging, get_latest_replay, get_resource_path
-om .patcher import ReplayPatcher, VersionInfo
+from .config import APP_NAME, APP_VERSION, DEFAULT_REPLAY_DIR
+from .utils import setup_logging, get_latest_replay, get_resource_path
+from .patcher import ReplayPatcher, VersionInfo
 
 class EZPatchApp(ctk.CTk):
     def __init__(self):
@@ -134,7 +134,7 @@ class EZPatchApp(ctk.CTk):
         ctk.CTkCheckBox(options_ame, text="Keep original files for backups", variable=self.keep_originals, command=self.on_keep_originals_change).pack(anchor="w", padx=10, pady=5)
         ctk.CTkCheckBox(options_ame, text="Overwrite previously patched replays", variable=self.overwrite_patched).pack(anchor="w", padx=10, pady=5)
         ctk.CTkCheckBox(options_ame, text="Move backups to ./Backups directory", variable=self.move_to_backups).pack(anchor="w", padx=10, pady=5)
-        ctk.CTkCheckBox(options_ame, text="Skip replay files om previous seasons", variable=self.skip_old_seasons).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkCheckBox(options_ame, text="Skip replay files from previous seasons", variable=self.skip_old_seasons).pack(anchor="w", padx=10, pady=5)
         
     def update_logger(self):
         self.logger = setup_logging(self.log_level.get())
@@ -236,7 +236,7 @@ class EZPatchApp(ctk.CTk):
             # extract version
             version_info = self.patcher.extract_version(working_path)
             if not version_info:
-                self.log_to_ui("Failed to extract version info om working file", "ERROR")
+                self.log_to_ui("Failed to extract version info from working file", "ERROR")
                 return
                 
             self.log_to_ui(f"Extracted version info - Version: {version_info.version_bytes.hex()}")
