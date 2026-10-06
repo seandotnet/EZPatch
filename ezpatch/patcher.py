@@ -25,7 +25,7 @@ class ReplayPatcher:
         self.logger = logger
         
     def validate_replay(self, file_path: Path) -> bool:
-        # checks if a file is a valid fortnite replay fr
+        # checks if a file is a valid fortnite replay 
         try:
             if not file_path.exists() or file_path.stat().st_size < MIN_FILE_SIZE:
                 return False
@@ -83,7 +83,7 @@ class ReplayPatcher:
             if skip_old_seasons and needs_version_update:
                 return PatchResult(False, "skipped old season", broken_path)
                 
-            # update the bytes fr
+            # update the bytes 
             if needs_version_update:
                 file_bytes[OFFSET_VERSION:OFFSET_VERSION + BYTES_LENGTH] = version_info.version_bytes
                 
